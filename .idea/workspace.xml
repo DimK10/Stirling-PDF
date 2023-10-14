@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7ccb1553-51d1-417e-b082-44be185c61d2" name="Changes" comment="Fixes issue with light theme support." />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Bug-Multitool-Filename" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;DimK10&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="f10df17a-9db3-4f80-9b6b-18f5d64fe2cb" />
+        <option name="url" value="git@github.com:DimK10/Stirling-PDF.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2WR8Mct5v636pkNolEAdy9bphRv" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "desktop-electron-mvp",
+    "javascript.nodejs.core.library.configured.version": "18.10.0",
+    "javascript.nodejs.core.library.typings.version": "18.18.5",
+    "last_opened_file_path": "C:/web-dev-workstation/Stirling-PDF/electron",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "project.propCompiler",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.1.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\web-dev-workstation\Stirling-PDF\electron" />
+      <recent name="C:\web-dev-workstation\Stirling-PDF\electron\jar" />
+      <recent name="C:\web-dev-workstation\Stirling-PDF\src\main\resources" />
+      <recent name="C:\web-dev-workstation\Stirling-PDF\src\main\resources\static\images\flags" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.toEXE">
+    <configuration name="Stirling-PDF [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="Stirling-PDF [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="jar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="localhost:8080" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080">
+      <method v="2" />
+    </configuration>
+    <configuration name="SPdfApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="Stirling-PDF.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="stirling.software.SPDF.SPdfApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/electron/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="toEXE" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/electron/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="toEXE" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.toEXE" />
+        <item itemvalue="npm.start" />
+        <item itemvalue="Gradle.Stirling-PDF [jar]" />
+        <item itemvalue="Gradle.Stirling-PDF [build]" />
+        <item itemvalue="JavaScript Debug.localhost:8080" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7ccb1553-51d1-417e-b082-44be185c61d2" name="Changes" comment="" />
+      <created>1696683985005</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1696683985005</updated>
+      <workItem from="1696683986026" duration="23415000" />
+      <workItem from="1696751727102" duration="620000" />
+      <workItem from="1696765546838" duration="15765000" />
+      <workItem from="1696953290762" duration="57000" />
+      <workItem from="1696957948676" duration="725000" />
+      <workItem from="1697227983104" duration="6384000" />
+      <workItem from="1697273340792" duration="1220000" />
+      <workItem from="1697280652351" duration="3121000" />
+      <workItem from="1697284310350" duration="2048000" />
+    </task>
+    <task id="LOCAL-00001" summary="WIP: Adds greek language support">
+      <option name="closed" value="true" />
+      <created>1696690384676</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1696690384676</updated>
+    </task>
+    <task id="LOCAL-00002" summary="WIP: Adds greek language support">
+      <option name="closed" value="true" />
+      <created>1696693179451</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1696693179451</updated>
+    </task>
+    <task id="LOCAL-00003" summary="WIP: Adds greek language support">
+      <option name="closed" value="true" />
+      <created>1696694204255</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1696694204255</updated>
+    </task>
+    <task id="LOCAL-00004" summary="WIP: Adds greek language support">
+      <option name="closed" value="true" />
+      <created>1696699540885</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1696699540885</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Adds greek language support">
+      <option name="closed" value="true" />
+      <created>1696700371804</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1696700371804</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Fixes some typos">
+      <option name="closed" value="true" />
+      <created>1696700819389</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1696700819389</updated>
+    </task>
+    <task id="LOCAL-00007" summary="WIP: Adds textarea and multi line support for pdf sign.">
+      <option name="closed" value="true" />
+      <created>1696708453077</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1696708453077</updated>
+    </task>
+    <task id="LOCAL-00008" summary="WIP: Makes font smaller but test is shown as whole and in multiline">
+      <option name="closed" value="true" />
+      <created>1696769501957</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1696769501957</updated>
+    </task>
+    <task id="LOCAL-00009" summary="WIP: Letters are now inside canvas, and multiline support is functional. There is a small bug where when there are a lot of multiple lines, the font gets smaller.">
+      <option name="closed" value="true" />
+      <created>1696769904520</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1696769904520</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Fixes minor typos">
+      <option name="closed" value="true" />
+      <created>1696770278595</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1696770278595</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Deletes console.log statements and commented out code.">
+      <option name="closed" value="true" />
+      <created>1696773726106</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1696773726106</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Changes filename using js, but the old filename persists in download">
+      <option name="closed" value="true" />
+      <created>1696780785407</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1696780785407</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Change in name works.">
+      <option name="closed" value="true" />
+      <created>1696784240846</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1696784240846</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Adds support for disabled filename input if not pdf is loaded. Need to disable the input if all pages are deleted.">
+      <option name="closed" value="true" />
+      <created>1696958654189</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1696958654189</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Fixes issue.">
+      <option name="closed" value="true" />
+      <created>1697230990040</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1697230990040</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Fixes issue with light theme support.">
+      <option name="closed" value="true" />
+      <created>1697233074148</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1697233074148</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="WIP: Adds greek language support" />
+    <MESSAGE value="Adds greek language support" />
+    <MESSAGE value="Fixes some typos" />
+    <MESSAGE value="WIP: Adds textarea and multi line support for pdf sign." />
+    <MESSAGE value="WIP: Makes font smaller but test is shown as whole and in multiline" />
+    <MESSAGE value="WIP: Letters are now inside canvas, and multiline support is functional. There is a small bug where when there are a lot of multiple lines, the font gets smaller." />
+    <MESSAGE value="Fixes minor typos" />
+    <MESSAGE value="Deletes console.log statements and commented out code." />
+    <MESSAGE value="Changes filename using js, but the old filename persists in download" />
+    <MESSAGE value="Change in name works." />
+    <MESSAGE value="Adds support for disabled filename input if not pdf is loaded. Need to disable the input if all pages are deleted." />
+    <MESSAGE value="Fixes issue." />
+    <MESSAGE value="Fixes issue with light theme support." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes issue with light theme support." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/main/resources/static/js/multitool/PdfContainer.js</url>
+          <line>207</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

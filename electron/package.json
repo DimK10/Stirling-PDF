@@ -1,0 +1,27 @@
+{
+  "name": "stirling-pdf",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "toEXE": "electron-packager C:\\web-dev-workstation\\Stirling-PDF\\electron stirling-pdf.exe"
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^26.3.0",
+    "electron-packager": "^17.1.2"
+  },
+  "dependencies": {
+    "tree-kill": "^1.2.2"
+  }
+}
