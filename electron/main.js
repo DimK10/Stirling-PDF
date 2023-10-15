@@ -25,9 +25,10 @@ function createWindow () {
 
 let child = null;
 let possibleMatches = [];
+let possibleMatches2 = [];
 let childPID = null;
 
-async function spawnBackend() {
+function spawnBackend() {
   let jarPath = app.getAppPath() + '\\jar\\Stirling-PDF-0.14.5.jar';
   console.log('jarPath ' + jarPath);
   child = require('child_process').spawn( 'java', ['-jar', jarPath, ''] );
@@ -40,6 +41,7 @@ async function spawnBackend() {
     //Here is where the output goes
 
     const regex = "INFO [0-9]+"
+    const regex2 = "Navigate to [a-z://a-z:0-9]+";
 
     if (childPID === null) {
       possibleMatches = data.match(regex) !== null ? data.match(regex) : [];
@@ -47,6 +49,11 @@ async function spawnBackend() {
         if (possibleMatches[0].includes('INFO')) childPID = possibleMatches[0].replace('INFO ', '');
       }
       console.log(childPID)
+    }
+
+    possibleMatches2 =  data.match(regex2) !== null ? data.match(regex2) : [];
+    if (possibleMatches2.length > 0 ) {
+      createWindow();
     }
 
     console.log('stdout: ' + data);
@@ -77,9 +84,9 @@ async function spawnBackend() {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.whenReady().then(async () => {
-  await spawnBackend();
-  createWindow()
+app.whenReady().then(() => {
+  spawnBackend();
+  // createWindow()
 
   app.on('activate', async function () {
     // On macOS it's common to re-create a window in the app when the
