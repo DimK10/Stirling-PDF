@@ -17,6 +17,7 @@ import { editMetadata as dependantEditMetadata } from './public/functions/editMe
 import { organizePages as dependantOrganizePages } from './public/functions/organizePages.js';
 import { removeBlankPages as dependantRemoveBlankPages} from './public/functions/removeBlankPages.js';
 import { splitOn as dependantSplitOn } from "./public/functions/splitOn.js";
+import { addWatermark as dependantAddWatermark } from "./public/functions/addWatermark.js";
 
 export async function extractPages(snapshot, pagesToExtractArray) {
     return dependantExtractPages(snapshot, pagesToExtractArray, PDFLib);
@@ -50,8 +51,8 @@ export async function editMetadata(snapshot, metadata) {
     return dependantEditMetadata(snapshot, metadata, PDFLib);
 }
 
-export async function addWatermark(snapshot, metadata) {
-    return dependantAddWatermark(snapshot, metadata, PDFLib);
+export async function addWatermark(snapshot) {
+    return dependantAddWatermark(snapshot, PDFLib);
 }
 
 export async function organizePages(snapshot, operation, customOrderString) {

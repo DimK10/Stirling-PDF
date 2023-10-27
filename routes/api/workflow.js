@@ -80,7 +80,7 @@ router.post("/:workflowUuid?", [
                 }
             });
 
-            const traverse = traverseOperations(workflow.operations, inputs);
+            const traverse = traverseOperations(workflow.operations, inputs, Functions);
 
             let pdfResults;
             let iteration;
