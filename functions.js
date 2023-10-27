@@ -50,6 +50,10 @@ export async function editMetadata(snapshot, metadata) {
     return dependantEditMetadata(snapshot, metadata, PDFLib);
 }
 
+export async function addWatermark(snapshot, metadata) {
+    return dependantAddWatermark(snapshot, metadata, PDFLib);
+}
+
 export async function organizePages(snapshot, operation, customOrderString) {
     return dependantOrganizePages(snapshot, operation, customOrderString, PDFLib);
 }

@@ -17,6 +17,7 @@ import { editMetadata as dependantEditMetadata} from "./functions/editMetadata.j
 import { organizePages as dependantOrganizePages} from "./functions/organizePages.js";
 import { removeBlankPages as dependantRemoveBlankPages} from "./functions/removeBlankPages.js";
 import { splitOn as dependantSplitOn } from "./functions/splitOn.js";
+import { addWatermark as dependantAddWaterMark } from "./functions/addWatermark.js";
 
 export async function extractPages(snapshot, pagesToExtractArray) {
     return dependantExtractPages(snapshot, pagesToExtractArray, PDFLib);
@@ -28,6 +29,10 @@ export async function impose(snapshot, nup, format) {
 
 export async function mergePDFs(snapshots) {
     return dependantMergePDFs(snapshots, PDFLib);
+}
+
+export async function addWatermark(snapshots) {
+    return dependantAddWaterMark(snapshots, PDFLib);
 }
 
 export async function rotatePages(snapshot, rotation) {
