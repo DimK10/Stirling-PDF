@@ -1,39 +1,38 @@
-import { organizeWaitOperations } from "./organizeWaitOperations.js";
+import {organizeWaitOperations} from "./organizeWaitOperations.js";
 
 /**
- * 
- * @param {*} operations 
- * @param {*} input 
- * @param {import('./functions.js')} Functions 
- * @returns 
+ *
+ * @param {*} operations
+ * @param {*} input
+ * @param {import('./functions.js')} Functions
+ * @returns
  */
-export async function * traverseOperations(operations, input, Functions) {
+export async function* traverseOperations(operations, input, Functions) {
     const waitOperations = organizeWaitOperations(operations);
     let results = [];
     yield* nextOperation(operations, input);
     console.log("Done2");
     return results;
 
-    async function * nextOperation(operations, input) {
-        if(Array.isArray(operations) && operations.length == 0) { // isEmpty
-            if(Array.isArray(input)) {
+    async function* nextOperation(operations, input) {
+        if (Array.isArray(operations) && operations.length == 0) { // isEmpty
+            if (Array.isArray(input)) {
                 console.log("operation done: " + input[0].fileName + input.length > 1 ? "+" : "");
                 results = results.concat(input);
                 return;
-            }
-            else {
+            } else {
                 console.log("operation done: " + input.fileName);
                 results.push(input);
                 return;
             }
         }
-    
+
         for (let i = 0; i < operations.length; i++) {
             yield* computeOperation(operations[i], structuredClone(input));
         }
     }
-    
-    async function * computeOperation(operation, input) {
+
+    async function* computeOperation(operation, input) {
         yield "Starting: " + operation.type;
         switch (operation.type) {
             case "done": // Skip this, because it is a valid node.
@@ -41,15 +40,14 @@ export async function * traverseOperations(operations, input, Functions) {
             case "wait":
                 const waitOperation = waitOperations[operation.values.id];
 
-                if(Array.isArray(input)) {
+                if (Array.isArray(input)) {
                     waitOperation.input.concat(input); // TODO: May have unexpected concequences. Needs further testing!
-                }
-                else {
+                } else {
                     waitOperation.input.push(input);
                 }
 
                 waitOperation.waitCount--;
-                if(waitOperation.waitCount == 0) {
+                if (waitOperation.waitCount == 0) {
                     yield* nextOperation(waitOperation.doneOperation.operations, waitOperation.input);
                 }
                 break;
@@ -74,6 +72,12 @@ export async function * traverseOperations(operations, input, Functions) {
                     }
                 });
                 break;
+            case "watermark":
+                yield* nToN(input, operation, async (input) => {
+                    input.fileName += "_watermarked_js"
+                    input.buffer = await Functions.addWatermark(input.buffer, operation.values["watermark"])
+                });
+                break;
             case "rotate":
                 yield* nToN(input, operation, async (input) => {
                     input.fileName += "_turned";
@@ -84,7 +88,7 @@ export async function * traverseOperations(operations, input, Functions) {
                 // TODO: A split might break the done condition, it may count multiple times. Needs further testing!
                 yield* oneToN(input, operation, async (input) => {
                     const splitResult = await Functions.splitPDF(input.buffer, operation.values["pagesToSplitAfterArray"]);
-    
+
                     const splits = [];
                     for (let j = 0; j < splitResult.length; j++) {
                         splits.push({
@@ -93,7 +97,7 @@ export async function * traverseOperations(operations, input, Functions) {
                             buffer: splitResult[j]
                         })
                     }
-    
+
                     input = splits;
                 });
                 break;
@@ -127,36 +131,34 @@ export async function * traverseOperations(operations, input, Functions) {
         }
     }
 
-    async function * nToOne(inputs, operation, callback) {
-        if(!Array.isArray(inputs)) {
+    async function* nToOne(inputs, operation, callback) {
+        if (!Array.isArray(inputs)) {
             inputs = [inputs];
         }
-        
+
         inputs = await callback(inputs);
         yield* nextOperation(operation.operations, inputs);
     }
 
-    async function * oneToN(input, operation, callback) {
-        if(Array.isArray(input)) {
+    async function* oneToN(input, operation, callback) {
+        if (Array.isArray(input)) {
             for (let i = 0; i < input.length; i++) {
                 await callback(input[i]);
             }
             yield* nextOperation(operation.operations, input);
-        }
-        else {
+        } else {
             await callback(input);
             yield* nextOperation(operation.operations, input);
         }
     }
 
-    async function * nToN(input, operation, callback) {
-        if(Array.isArray(input)) {
+    async function* nToN(input, operation, callback) {
+        if (Array.isArray(input)) {
             for (let i = 0; i < input.length; i++) {
                 await callback(input[i]);
             }
             yield* nextOperation(operation.operations, input);
-        }
-        else {
+        } else {
             await callback(input);
             yield* nextOperation(operation.operations, input);
         }

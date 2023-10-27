@@ -31,8 +31,8 @@ export async function mergePDFs(snapshots) {
     return dependantMergePDFs(snapshots, PDFLib);
 }
 
-export async function addWatermark(snapshots) {
-    return dependantAddWaterMark(snapshots, PDFLib);
+export async function addWatermark(snapshot) {
+    return dependantAddWaterMark(snapshot, PDFLib);
 }
 
 export async function rotatePages(snapshot, rotation) {

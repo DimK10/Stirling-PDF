@@ -82,6 +82,20 @@ export const mergeOnly = {
     ]
 }
 
+// This will add a watermark in PDF document
+export const addWaterMarkOnly = {
+    outputOptions: {
+        zip: false
+    },
+    operations: [
+        {
+            type: "watermark",
+            values: {},
+            operations: []
+        }
+    ]
+}
+
 // Extract Pages and store them in a new document
 export const extractOnly = {
     outputOptions: {
