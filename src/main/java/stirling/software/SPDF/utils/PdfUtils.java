@@ -1,40 +1,95 @@
 package stirling.software.SPDF.utils;
 
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.util.List;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
-
-import javax.imageio.IIOImage;
-import javax.imageio.ImageIO;
-import javax.imageio.ImageReader;
-import javax.imageio.ImageWriteParam;
-import javax.imageio.ImageWriter;
-import javax.imageio.stream.ImageOutputStream;
-
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.*;
+import org.apache.pdfbox.pdmodel.common.PDMetadata;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.graphics.image.JPEGFactory;
 import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import org.apache.pdfbox.pdmodel.interactive.documentnavigation.outline.PDDocumentOutline;
 import org.apache.pdfbox.rendering.ImageType;
 import org.apache.pdfbox.rendering.PDFRenderer;
 import org.apache.pdfbox.text.PDFTextStripper;
+import org.apache.xmpbox.XMPMetadata;
+import org.apache.xmpbox.schema.AdobePDFSchema;
+import org.apache.xmpbox.schema.DublinCoreSchema;
+import org.apache.xmpbox.schema.XMPBasicSchema;
+import org.apache.xmpbox.xml.XmpSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
-
 import stirling.software.SPDF.pdf.ImageFinder;
+
+import javax.imageio.*;
+import javax.imageio.stream.ImageOutputStream;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 public class PdfUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(PdfUtils.class);
+
+    public static PDDocument addMetadata(PDDocument oldPdf, PDDocument newPdf) throws Exception {
+        try {
+
+            PDDocumentInformation documentInformation = new PDDocumentInformation();
+            documentInformation.setTitle(oldPdf.getDocumentInformation().getTitle());
+            documentInformation.setSubject(oldPdf.getDocumentInformation().getSubject());
+            documentInformation.setAuthor(oldPdf.getDocumentInformation().getAuthor());
+            documentInformation.setCreator(oldPdf.getDocumentInformation().getCreator());
+            documentInformation.setProducer(oldPdf.getDocumentInformation().getProducer());
+            documentInformation.setKeywords(oldPdf.getDocumentInformation().getKeywords());
+            documentInformation.setCreationDate(oldPdf.getDocumentInformation().getCreationDate());
+            documentInformation.setModificationDate(
+                    oldPdf.getDocumentInformation().getModificationDate());
+
+            newPdf.setDocumentInformation(documentInformation);
+
+            PDDocumentCatalog catalog = newPdf.getDocumentCatalog();
+
+            XMPMetadata metadata = XMPMetadata.createXMPMetadata();
+            AdobePDFSchema pdfSchema = metadata.createAndAddAdobePDFSchema();
+            pdfSchema.setKeywords(documentInformation.getKeywords());
+            pdfSchema.setProducer(documentInformation.getProducer());
+
+            XMPBasicSchema basicSchema = metadata.createAndAddXMPBasicSchema();
+            basicSchema.setCreateDate(
+                    documentInformation.getCreationDate() != null
+                            ? documentInformation.getCreationDate()
+                            : Calendar.getInstance());
+            basicSchema.setModifyDate(Calendar.getInstance());
+            basicSchema.setCreatorTool(documentInformation.getCreator());
+            basicSchema.setMetadataDate(Calendar.getInstance());
+
+            DublinCoreSchema dcSchema = metadata.createAndAddDublinCoreSchema();
+            dcSchema.setTitle(documentInformation.getTitle());
+            dcSchema.addCreator(documentInformation.getAuthor());
+            dcSchema.setDescription(documentInformation.getSubject());
+
+            PDMetadata metadataStream = new PDMetadata(newPdf);
+            catalog.setMetadata(metadataStream);
+
+            XmpSerializer xmpSerializer = new XmpSerializer();
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            xmpSerializer.serialize(metadata, byteArrayOutputStream, false);
+            metadataStream.importXMPMetadata(byteArrayOutputStream.toByteArray());
+
+            PDDocumentOutline outline = oldPdf.getDocumentCatalog().getDocumentOutline();
+            newPdf.getDocumentCatalog().setDocumentOutline(outline);
+
+            return newPdf;
+        } catch (Exception e) {
+            logger.error("Error in adding metadata to pdf", e);
+            throw e;
+        }
+    }
 
     public static PDRectangle textToPageSize(String size) {
         switch (size.toUpperCase()) {

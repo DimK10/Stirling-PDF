@@ -1,9 +1,7 @@
 package stirling.software.SPDF.controller.api;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.pdfbox.multipdf.LayerUtility;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -17,12 +15,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
-
 import stirling.software.SPDF.model.api.general.CropPdfForm;
+import stirling.software.SPDF.utils.PdfUtils;
 import stirling.software.SPDF.utils.WebResponseUtils;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 
 @RestController
 @RequestMapping("/api/v1/general")
@@ -36,7 +34,7 @@ public class CropController {
             summary = "Crops a PDF document",
             description =
                     "This operation takes an input PDF file and crops it according to the given coordinates. Input:PDF Output:PDF Type:SISO")
-    public ResponseEntity<byte[]> cropPdf(@ModelAttribute CropPdfForm form) throws IOException {
+    public ResponseEntity<byte[]> cropPdf(@ModelAttribute CropPdfForm form) throws Exception {
 
         PDDocument sourceDocument =
                 PDDocument.load(new ByteArrayInputStream(form.getFileInput().getBytes()));
@@ -75,6 +73,9 @@ public class CropController {
             newPage.setMediaBox(
                     new PDRectangle(form.getX(), form.getY(), form.getWidth(), form.getHeight()));
         }
+
+        // Add metadata in pdf
+        PdfUtils.addMetadata(sourceDocument, newDocument);
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         newDocument.save(baos);

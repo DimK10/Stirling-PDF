@@ -1,18 +1,17 @@
 package stirling.software.SPDF;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Collections;
-
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.EnableScheduling;
-
-import jakarta.annotation.PostConstruct;
 import stirling.software.SPDF.config.ConfigInitializer;
 import stirling.software.SPDF.utils.GeneralUtils;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Collections;
 
 @SpringBootApplication
 @EnableScheduling

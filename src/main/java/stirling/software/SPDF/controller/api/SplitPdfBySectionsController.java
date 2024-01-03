@@ -1,14 +1,7 @@
 package stirling.software.SPDF.controller.api;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
-
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.pdfbox.multipdf.LayerUtility;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -23,12 +16,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
-
 import stirling.software.SPDF.model.api.SplitPdfBySectionsRequest;
 import stirling.software.SPDF.utils.WebResponseUtils;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 @RestController
 @RequestMapping("/api/v1/general")
@@ -119,11 +117,10 @@ public class SplitPdfBySectionsController {
                         // Set clipping area and position
                         float translateX = -subPageWidth * i;
                         float translateY = height - subPageHeight * (verticalDivisions - j);
-                        
-                        
-                        //Code for google Docs pdfs..
-                        //float translateY = -subPageHeight * (verticalDivisions - 1 - j);
-                        
+
+                        // Code for google Docs pdfs..
+                        // float translateY = -subPageHeight * (verticalDivisions - 1 - j);
+
                         contentStream.saveGraphicsState();
                         contentStream.addRect(0, 0, subPageWidth, subPageHeight);
                         contentStream.clip();
