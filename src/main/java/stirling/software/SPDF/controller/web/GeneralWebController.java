@@ -1,20 +1,9 @@
 package stirling.software.SPDF.controller.web;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,18 +13,26 @@ import org.springframework.core.io.support.ResourcePatternUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import stirling.software.SPDF.service.MultipleSignService;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import io.swagger.v3.oas.annotations.Hidden;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Controller
 @Tag(name = "General", description = "General APIs")
 public class GeneralWebController {
 
     private static final Logger logger = LoggerFactory.getLogger(GeneralWebController.class);
+
+    @Autowired
+    private MultipleSignService multipleSignService;
 
     @GetMapping("/pipeline")
     @Hidden
@@ -170,6 +167,16 @@ public class GeneralWebController {
         model.addAttribute("currentPage", "sign");
         model.addAttribute("fonts", getFontNames());
         return "sign";
+    }
+
+    @GetMapping("/multiple-sign")
+    @Hidden
+    public String multipleSignForm(Model model) {
+        model.addAttribute("currentPage", "multiple-sign");
+        model.addAttribute("fonts", getFontNames());
+        model.addAttribute("fonts", getFontNames());
+        model.addAttribute("pdfsForSign", multipleSignService.PdfsForSign());
+        return "multiple-sign";
     }
 
     @GetMapping("/multi-page-layout")

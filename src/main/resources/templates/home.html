@@ -145,6 +145,9 @@
             th:replace="~{fragments/card :: card(id='sign', cardTitle=#{home.sign.title}, cardText=#{home.sign.desc}, cardLink='sign', toolIcon='signature', tags=#{sign.tags}, toolGroup='sign')}">
           </div>
           <div
+                  th:replace="~{fragments/card :: card(id='multiple-sign', cardTitle=#{home.sign.multiple.title}, cardText=#{home.sign.multiple.desc}, cardLink='multiple-sign', toolIcon='signature', tags=#{sign.multiple.tags}, toolGroup='sign')}">
+          </div>
+          <div
             th:replace="~{fragments/card :: card(id='flatten', cardTitle=#{home.flatten.title}, cardText=#{home.flatten.desc}, cardLink='flatten', toolIcon='layers_clear', tags=#{flatten.tags}, toolGroup='other')}">
           </div>
 

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html th:lang="${#locale.language}" th:dir="#{language.direction}" th:data-language="${#locale.toString()}"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <th:block
+            th:insert="~{fragments/common :: head(title=#{sign.multiple.title}, header=#{sign.multiple.header})}"></th:block>
+    <link rel="stylesheet" href="css/multiple-sign.css">
+    <th:block th:each="font : ${fonts}">
+        <style th:inline="text">
+            @font-face {
+                font-family: "[[${font.name}]]";
+                src: url('fonts/[[${font.name}]].[[${font.extension}]]') format('[[${font.type}]]');
+            }
+
+            #font-select option[value="[[${font.name}]]"] {
+                font-family: "[[${font.name}]]", cursive;
+            }
+
+            #font-select option[value='/*[[${font.name}]]*/'] {
+                font-family: '/*[[${font.name}]]*/', cursive;
+            }
+        </style>
+    </th:block>
+    <div id="page-container">
+        <div id="content-wrap">
+            <th:block th:insert="~{fragments/navbar.html :: navbar}"></th:block>
+            <br><br>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <h1 class="display-5 fw-bold mb-5" th:text="#{sign.multiple.header}"></h1>
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Pdf Name</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="no-data" th:if="${pdfsForSign.length} == 0">
+                            <td colspan="4">No data</td>
+                        </tr>
+                        <tr th:each="pdf : ${pdfsForSign}">
+                            <th scope="row">1</th>
+                            <td th:text="${pdf.getName()}"></td>
+                            <td>test</td>
+                            <td>
+                                <button class="btn btn-success">Test button</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <!--          <div class="col-md-6 bg-card">-->
+                    <!--            <div class="tool-header">-->
+                    <!--              <span class="material-symbols-rounded tool-header-icon sign">signature</span>-->
+                    <!--              <span class="tool-header-text" th:text="#{sign.multiple.header}"></span>-->
+                    <!--            </div>-->
+
+                    <!--            &lt;!&ndash; pdf selector &ndash;&gt;-->
+                    <!--            <div th:replace="~{fragments/common :: fileSelector(name='pdf-upload', multiple=false, accept='application/pdf')}"></div>-->
+                    <!--          </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</head>
+<body>
+
+</body>
+</html>
