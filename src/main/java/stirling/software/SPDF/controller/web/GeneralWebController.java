@@ -200,6 +200,13 @@ public class GeneralWebController {
         return "overlay-pdf";
     }
 
+    @GetMapping("/pdf-creator")
+    @Hidden
+    public String pdfCreator(Model model) {
+        model.addAttribute("currentPage", "pdf-creator");
+        return "pdf-creator";
+    }
+
     @Autowired private ResourceLoader resourceLoader;
 
     private List<FontResource> getFontNames() {
