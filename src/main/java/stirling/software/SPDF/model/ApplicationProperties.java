@@ -455,7 +455,6 @@ public class ApplicationProperties {
             private String singleLogoutResponseUri;
             private String signingCertificate;
 
-
             public Boolean getEnabled() {
                 return enabled;
             }
@@ -514,21 +513,27 @@ public class ApplicationProperties {
 
             @Override
             public String toString() {
-                return "SAML2 [" +
-                        "enabled="
+                return "SAML2 ["
+                        + "enabled="
                         + enabled
                         + ", metadataLocation='"
-                        + metadataLocation + '\''
+                        + metadataLocation
+                        + '\''
                         + ", privateKeyLocation='"
-                        + privateKeyLocation + '\''
+                        + privateKeyLocation
+                        + '\''
                         + ", certificateLocation='"
-                        + certificateLocation + '\''
+                        + certificateLocation
+                        + '\''
                         + ", singleLogoutBinding='"
-                        + singleLogoutBinding + '\''
+                        + singleLogoutBinding
+                        + '\''
                         + ", singleLogoutResponseUri='"
-                        + singleLogoutResponseUri + '\''
+                        + singleLogoutResponseUri
+                        + '\''
                         + ", signingCertificate='"
-                        + signingCertificate + '\''
+                        + signingCertificate
+                        + '\''
                         + ']';
             }
         }
