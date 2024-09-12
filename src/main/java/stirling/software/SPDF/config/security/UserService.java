@@ -1,11 +1,7 @@
 package stirling.software.SPDF.config.security;
 
 import java.io.IOException;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -221,7 +217,7 @@ public class UserService implements UserServiceInterface {
 
     public void updateUserSettings(String username, Map<String, String> updates)
             throws IOException {
-        Optional<User> userOpt = findByUsernameIgnoreCase(username);
+        Optional<User> userOpt = findByUsernameIgnoreCaseWithSettings(username);
         if (userOpt.isPresent()) {
             User user = userOpt.get();
             Map<String, String> settingsMap = user.getSettings();
@@ -244,6 +240,10 @@ public class UserService implements UserServiceInterface {
 
     public Optional<User> findByUsernameIgnoreCase(String username) {
         return userRepository.findByUsernameIgnoreCase(username);
+    }
+
+    public Optional<User> findByUsernameIgnoreCaseWithSettings(String username) {
+        return userRepository.findByUsernameIgnoreCaseWithSettings(username);
     }
 
     public Authority findRole(User user) {
