@@ -32,6 +32,7 @@ java {
 repositories {
     mavenCentral()
     maven { url "https://jitpack.io" }
+    maven { url "https://build.shibboleth.net/nexus/content/repositories/releases/" }
 }
 
 licenseReport {
@@ -114,6 +115,12 @@ configurations.all {
     exclude group: "org.springframework.boot", module: "spring-boot-starter-tomcat"
 }
 dependencies {
+    constraints {
+        implementation "org.opensaml:opensaml-core:4.1.1"
+        implementation "org.opensaml:opensaml-saml-api:4.1.1"
+        implementation "org.opensaml:opensaml-saml-impl:4.1.1"
+    }
+    implementation 'org.springframework.security:spring-security-saml2-service-provider'
     //security updates
     implementation "org.springframework:spring-webmvc:6.1.9"
 

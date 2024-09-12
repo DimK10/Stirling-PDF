@@ -130,6 +130,7 @@ public class ApplicationProperties {
         private Boolean csrfDisabled;
         private InitialLogin initialLogin;
         private OAUTH2 oauth2;
+        private SAML2 saml2;
         private int loginAttemptCount;
         private long loginResetTimeMinutes;
         private String loginMethod = "all";
@@ -174,6 +175,14 @@ public class ApplicationProperties {
             this.oauth2 = oauth2;
         }
 
+        public SAML2 getSAML2() {
+            return saml2 != null ? saml2 : new SAML2();
+        }
+
+        public void setSAML2(SAML2 saml2) {
+            this.saml2 = saml2;
+        }
+
         public Boolean getEnableLogin() {
             return enableLogin;
         }
@@ -196,6 +205,8 @@ public class ApplicationProperties {
                     + enableLogin
                     + ", oauth2="
                     + oauth2
+                    + ", saml2="
+                    + saml2
                     + ", initialLogin="
                     + initialLogin
                     + ", csrfDisabled="
@@ -432,6 +443,93 @@ public class ApplicationProperties {
                             + keycloak
                             + "]";
                 }
+            }
+        }
+
+        public static class SAML2 {
+            private Boolean enabled;
+            private String metadataLocation;
+            private String privateKeyLocation;
+            private String certificateLocation;
+            private String singleLogoutBinding;
+            private String singleLogoutResponseUri;
+            private String signingCertificate;
+
+
+            public Boolean getEnabled() {
+                return enabled;
+            }
+
+            public void setEnabled(Boolean enabled) {
+                this.enabled = enabled;
+            }
+
+            public String getMetadataLocation() {
+                return metadataLocation;
+            }
+
+            public void setMetadataLocation(String metadataLocation) {
+                this.metadataLocation = metadataLocation;
+            }
+
+            public String getPrivateKeyLocation() {
+                return privateKeyLocation;
+            }
+
+            public void setPrivateKeyLocation(String privateKeyLocation) {
+                this.privateKeyLocation = privateKeyLocation;
+            }
+
+            public String getCertificateLocation() {
+                return certificateLocation;
+            }
+
+            public void setCertificateLocation(String certificateLocation) {
+                this.certificateLocation = certificateLocation;
+            }
+
+            public String getSingleLogoutBinding() {
+                return singleLogoutBinding;
+            }
+
+            public void setSingleLogoutBinding(String singleLogoutBinding) {
+                this.singleLogoutBinding = singleLogoutBinding;
+            }
+
+            public String getSingleLogoutResponseUri() {
+                return singleLogoutResponseUri;
+            }
+
+            public void setSingleLogoutResponseUri(String singleLogoutResponseUri) {
+                this.singleLogoutResponseUri = singleLogoutResponseUri;
+            }
+
+            public String getSigningCertificate() {
+                return signingCertificate;
+            }
+
+            public void setSigningCertificate(String signingCertificate) {
+                this.signingCertificate = signingCertificate;
+            }
+
+            @Override
+            public String toString() {
+                return "SAML2 [" +
+                        "enabled="
+                        + enabled
+                        + ", metadataLocation='"
+                        + metadataLocation + '\''
+                        + ", privateKeyLocation='"
+                        + privateKeyLocation + '\''
+                        + ", certificateLocation='"
+                        + certificateLocation + '\''
+                        + ", singleLogoutBinding='"
+                        + singleLogoutBinding + '\''
+                        + ", singleLogoutResponseUri='"
+                        + singleLogoutResponseUri + '\''
+                        + ", signingCertificate='"
+                        + signingCertificate + '\''
+                        + ']';
             }
         }
     }

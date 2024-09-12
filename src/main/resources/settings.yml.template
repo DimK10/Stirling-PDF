@@ -20,6 +20,14 @@ security:
   initialLogin:
     username: '' # Initial username for the first login
     password: '' # Initial password for the first login
+  saml2:
+    enabled: true
+    metadataLocation:'https://dev-60977729.okta.com/app/exkjkcuy34fxOfSEl5d7/sso/saml/metadata'
+    privateKeyLocation: 'classpath:local.key'
+    certificateLocation: 'classpath:local.crt'
+    singleLogoutBinding: 'POST'
+    singleLogoutResponseUri: '{baseUrl}/logout/saml2/slo'
+    signingCertificate: 'MIIDqDCCApCgAwIBAgIGAZHgHwqDMA0GCSqGSIb3DQEBCwUAMIGUMQswCQYDVQQGEwJVUzETMBEG A1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNU2FuIEZyYW5jaXNjbzENMAsGA1UECgwET2t0YTEU MBIGA1UECwwLU1NPUHJvdmlkZXIxFTATBgNVBAMMDGRldi02MDk3NzcyOTEcMBoGCSqGSIb3DQEJ ARYNaW5mb0Bva3RhLmNvbTAeFw0yNDA5MTEwODA1NTZaFw0zNDA5MTEwODA2NTZaMIGUMQswCQYD VQQGEwJVUzETMBEGA1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNU2FuIEZyYW5jaXNjbzENMAsG A1UECgwET2t0YTEUMBIGA1UECwwLU1NPUHJvdmlkZXIxFTATBgNVBAMMDGRldi02MDk3NzcyOTEc MBoGCSqGSIb3DQEJARYNaW5mb0Bva3RhLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoC ggEBALy9fm+qoDoYPTwW++r50ihzoJWUUT8WovfKblDdKkFmFV5ldhaIma2gQmis+5ZOuLB+A6NL /SC/N8WgF4puQwkH9ZRxHm8Pca7+JP3wUjX3/Sgkhdio0K5WaP4jNDtx+acd5LbpGFaKvOMDiVA+ /Zd06U4j83lWpHqpI9k3YeA5IvnBoHaXtqZ67jVZNZcxo6P0ZNxEoHnFUrb+/jCkMUejq+oh4QIA U1rlsl28rUpiFWmoMllicTkTvCoO8LHx87wb+s/Q2zEQ6mjBPYsw5vZ+94gskPJ0RaDtMq2R1wWw r1jejXnwWacPbwuq+BPR5ia6KWNE/4UhHN/uJEQ5f7cCAwEAATANBgkqhkiG9w0BAQsFAAOCAQEA Lq9Fg+5tNRQqSL8yWof/O+qu+kIMNB7COpfnQpytI+1amoamAck8DTvJQYT+iCfS0BxFXDK/o7Be m9S01n5yaC+TIAk8p9UNNnAT0+GGqUFPSxnTFoQSbWI1XcVlvTBSQyd+sRx1vw2e5hhx+k2/dlF3 2qfDo6pN++IDwvAXCsT9qlbAMs9OOj/sX7Qg6Ybe5uCrR7U98smRAsounCi++a9dQ6pVgszHA7eH y6XBO1ISEsH1/vWKOcSbywD4m1+ORLpfj7BRcbi6oLFoSjIQ4KeIkMbEeiBo/TxgF5Ov3MTM/Wo0 6CS64CG3k0NToFWLWzq1TtSxD4KVrGnfg1ci1Q=='
   oauth2:
     enabled: false # set to 'true' to enable login (Note: enableLogin must also be 'true' for this to work)
     client:
@@ -47,6 +55,8 @@ security:
     useAsUsername: email # Default is 'email'; custom fields can be used as the username
     scopes: openid, profile, email # Specify the scopes for which the application will request permissions
     provider: google # Set this to your OAuth provider's name, e.g., 'google' or 'keycloak'
+
+
 
 system:
   defaultLocale: en-US # Set the default language (e.g. 'de-DE', 'fr-FR', etc)
