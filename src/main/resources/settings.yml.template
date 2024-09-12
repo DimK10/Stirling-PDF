@@ -22,7 +22,8 @@ security:
     password: '' # Initial password for the first login
   saml2:
     enabled: true
-    metadataLocation:'https://dev-60977729.okta.com/app/exkjkcuy34fxOfSEl5d7/sso/saml/metadata'
+    registrationId: 'okta'
+    metadataLocation: 'https://dev-60977729.okta.com/app/exkjkcuy34fxOfSEl5d7/sso/saml/metadata'
     privateKeyLocation: 'classpath:local.key'
     certificateLocation: 'classpath:local.crt'
     singleLogoutBinding: 'POST'

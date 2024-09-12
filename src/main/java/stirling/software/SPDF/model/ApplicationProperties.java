@@ -448,6 +448,7 @@ public class ApplicationProperties {
 
         public static class SAML2 {
             private Boolean enabled;
+            private String registrationId;
             private String metadataLocation;
             private String privateKeyLocation;
             private String certificateLocation;
@@ -511,11 +512,22 @@ public class ApplicationProperties {
                 this.signingCertificate = signingCertificate;
             }
 
+            public String getRegistrationId() {
+                return registrationId;
+            }
+
+            public void setRegistrationId(String registrationId) {
+                this.registrationId = registrationId;
+            }
+
             @Override
             public String toString() {
                 return "SAML2 ["
                         + "enabled="
                         + enabled
+                        + ", registrationId='"
+                        + registrationId
+                        + '\''
                         + ", metadataLocation='"
                         + metadataLocation
                         + '\''
