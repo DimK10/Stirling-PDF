@@ -448,6 +448,7 @@ public class ApplicationProperties {
 
         public static class SAML2 {
             private Boolean enabled;
+            private String entityId;
             private String registrationId;
             private String metadataLocation;
             private String privateKeyLocation;
@@ -512,6 +513,14 @@ public class ApplicationProperties {
                 this.signingCertificate = signingCertificate;
             }
 
+            public String getEntityId() {
+                return entityId;
+            }
+
+            public void setEntityId(String entityId) {
+                this.entityId = entityId;
+            }
+
             public String getRegistrationId() {
                 return registrationId;
             }
@@ -525,6 +534,9 @@ public class ApplicationProperties {
                 return "SAML2 ["
                         + "enabled="
                         + enabled
+                        + ", entityId='"
+                        + entityId
+                        + '\''
                         + ", registrationId='"
                         + registrationId
                         + '\''

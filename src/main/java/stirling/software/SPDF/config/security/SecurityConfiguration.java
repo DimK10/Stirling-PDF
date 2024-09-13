@@ -451,6 +451,7 @@ public class SecurityConfiguration {
                                             .getSecurity()
                                             .getSAML2()
                                             .getMetadataLocation())
+                            .entityId(applicationProperties.getSecurity().getSAML2().getEntityId())
                             .registrationId(
                                     applicationProperties
                                             .getSecurity()
