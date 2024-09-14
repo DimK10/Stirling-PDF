@@ -30,7 +30,7 @@ security:
     certificateLocation: 'classpath:local.crt' # The generated key via openssl
     singleLogoutBinding: 'POST' #No need to change, leave as is
     singleLogoutResponseUri: '{baseUrl}/logout/saml2/slo' #Leave as is
-    signingCertificate: '' # The public key certificate from okta or keycloak. In okta, it can be found inside the metadata url. In keycloak, it is in realm settings, in General tab, the link SAML 2.0 Identity Provider Metadata
+    signingCertificate: 'MIICnzCCAYcCBgGR7C7KJjANBgkqhkiG9w0BAQsFADATMREwDwYDVQQDDAhzYW1sLXNzbzAeFw0yNDA5MTMxNjE3NTVaFw0zNDA5MTMxNjE5MzVaMBMxETAPBgNVBAMMCHNhbWwtc3NvMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqPRhmflGgOafqoSclyVKUFtaw3x1lYx0BBbZzBSCB2ChvdO6D64204LHZITOoTfKedQNbCNXd9HPzblbADpgsu473ojVomqB4Jf6/ZvF22iodgUWOfiICS9lu3zoiDdYeQTV0WdHYsFsbxRcQCarwsAOsDv2Rngdv8skAT+bwHYayBR8G7WSUOexzqpnLBZqhpnbgzUgnZAVfwDjoMeL9iQpO5f8tMEFs4bndQZ67d4n5hX+ZpvKBsHtPuPMg3Bt1ZgZtw6y6oXR7CoP6uwppCaCXQ15BSx+rSyOMsZYJw72KCqHllCUv59aOo6Le+j61KF+bo3f/i63oaKwHEScowIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQAa1H3P3/IuxkzZEGmC+V7sP+GebTZjQMg5u/GJqwZYCsfZJgUVcKBI6E7DmOaLnMloJEb1GLhoEjZ07P0tgRivPWD0ykD+/xSVgIP8h5kul/hxSXiltG/9T+GIlbl5rGg1mkzGagGXsMSWBT+arf8mULgwQgCEDpu2dTCij4RmGraINVlnhBa0h1QSJBHncqu9egLIApSOc9YC0yFGDKoWT6nGSvBub450IHEtad+O9Cy/wQRFrKs2C78ihL66luPZfnboCKID73KXw9xKm6gPdt5qbtC9boWqPUqVGzQCxJ6iZT1UnFVOdC12TeGrjLWPa8Dh2W9tYg+5aAU0q2WT' # The public key certificate from okta or keycloak. In okta, it can be found inside the metadata url. In keycloak, it is in realm settings, in General tab, the link SAML 2.0 Identity Provider Metadata
   oauth2:
     enabled: false # set to 'true' to enable login (Note: enableLogin must also be 'true' for this to work)
     client:

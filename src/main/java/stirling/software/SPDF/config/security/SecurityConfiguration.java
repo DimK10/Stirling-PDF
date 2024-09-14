@@ -18,7 +18,6 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.security.authentication.ProviderManager;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -41,6 +40,7 @@ import org.springframework.security.saml2.provider.service.authentication.Saml2A
 import org.springframework.security.saml2.provider.service.registration.*;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.savedrequest.NullRequestCache;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -49,6 +49,7 @@ import stirling.software.SPDF.config.security.oauth2.CustomOAuth2AuthenticationF
 import stirling.software.SPDF.config.security.oauth2.CustomOAuth2AuthenticationSuccessHandler;
 import stirling.software.SPDF.config.security.oauth2.CustomOAuth2LogoutSuccessHandler;
 import stirling.software.SPDF.config.security.oauth2.CustomOAuth2UserService;
+import stirling.software.SPDF.config.security.saml2.SamlLogoutSuccessHandler;
 import stirling.software.SPDF.config.security.session.SessionPersistentRegistry;
 import stirling.software.SPDF.model.ApplicationProperties;
 import stirling.software.SPDF.model.ApplicationProperties.Security.OAUTH2;
@@ -219,7 +220,29 @@ public class SecurityConfiguration {
                                 saml2 ->
                                         saml2.authenticationManager(
                                                 new ProviderManager(authenticationProvider)))
-                        .saml2Logout(Customizer.withDefaults());
+                        //                        .saml2Logout(Customizer.withDefaults())
+                        .logout(
+                                saml2 -> {
+                                    saml2.logoutSuccessUrl("/logout-success")
+                                            .invalidateHttpSession(true)
+                                            .clearAuthentication(true)
+                                            .logoutUrl("/saml/logout")
+                                            .logoutSuccessHandler(samlLogoutSuccessHandler());
+                                });
+                //                        .exceptionHandling(
+                //                                (exceptions) ->
+                //                                        exceptions.authenticationEntryPoint(
+                //                                                new
+                // LoginUrlAuthenticationEntryPoint(
+                //                                                        "/saml2/authenticate/"
+                //                                                                +
+                // applicationProperties
+                //
+                // .getSecurity()
+                //
+                // .getSAML2()
+                //
+                // .getRegistrationId())));
             }
         } else {
             http.csrf(csrf -> csrf.disable())
@@ -415,6 +438,15 @@ public class SecurityConfiguration {
     @Bean
     public boolean activSecurity() {
         return true;
+    }
+
+    @Bean
+    @ConditionalOnProperty(
+            value = "security.saml2.enabled",
+            havingValue = "true",
+            matchIfMissing = false)
+    public LogoutSuccessHandler samlLogoutSuccessHandler() {
+        return new SamlLogoutSuccessHandler();
     }
 
     @Bean
