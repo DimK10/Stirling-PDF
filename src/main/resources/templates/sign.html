@@ -408,7 +408,45 @@
                   </span>
                   <span class="btn-tooltip" th:text="#{sign.last}"></span>
                 </button>
+
               </div>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="signatureRoutingCheck">
+                <label class="form-check-label" for="signatureRoutingCheck">Do you want to add more people to sign?</label>
+              </div>
+
+              <div id="signatureRoutingForm" class="form-group mt-3 mb-3" style="display: none">
+                  <div class="input-group" id="signatureRoutingInputContainer-1">
+                      <input type="email"
+                             id="signatureRoutingInput-1"
+                             class="form-control"
+                             placeholder="Email of another person to sign"
+                             aria-label="Email of another person to sign with buttons to add more or remove existing"
+                             aria-describedby="signatureRoutingInput-1">
+                  </div>
+              </div>
+              <div class="d-flex flex-row justify-content-center">
+                <button
+                        id="signatureRoutingAddBtn"
+                        class="btn btn-success"
+                        type="button"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        title="Add another email"
+                        style="display: none"
+                >Add another Email</button>
+                <button
+                      id="signatureRoutingRemoveBtn"
+                      class="btn btn-danger"
+                      type="button"
+                      data-toggle="tooltip"
+                      data-placement="top"
+                      title="Remove this email"
+                      style="display: none"
+                      disabled
+          >Remove last Email</button>
+              </div>
+
             </div>
 
             <!-- download button -->
@@ -426,6 +464,82 @@
                   await DraggableUtils.goToPage(0)
                 }
               }
+            </script>
+
+            <script>
+              document.getElementById('signatureRoutingCheck').addEventListener('change', (e) => {
+                const checked = e.target.checked;
+                const signatureRoutingForm = document.getElementById('signatureRoutingForm');
+                const addSignatureBtn = document.getElementById('signatureRoutingAddBtn');
+                const removeSignatureBtn = document.getElementById('signatureRoutingRemoveBtn');
+                signatureRoutingForm.style.display = checked ? 'block' : 'none';
+                addSignatureBtn.style.display = checked ? 'block' : 'none';
+                removeSignatureBtn.style.display = checked ? 'block' : 'none';
+
+                if (!checked) {
+                  signatureRoutingForm.innerHTML = '<div class="input-group" id="signatureRoutingInputContainer-1">' +
+                          '                      <input type="email"' +
+                          '                             id="signatureRoutingInput-1"' +
+                          '                             class="form-control"' +
+                          '                             placeholder="Email of another person to sign"' +
+                          '                             aria-label="Email of another person to sign with buttons to add more or remove existing"' +
+                          '                             aria-describedby="signatureRoutingInput-1">' +
+                          '                  </div>'
+
+                  removeSignatureBtn.disabled = true;
+                }
+
+                document.getElementById('signatureRoutingInput-1').required = checked;
+                // document.getElementById('signatureRoutingRemoveBtn-1').addEventListener('click', handleRemoveSingBtn);
+
+              })
+            </script>
+
+            <script>
+
+              const  addSignBtn = document.getElementById('signatureRoutingAddBtn');
+              const removeSignBtn = document.getElementById('signatureRoutingRemoveBtn');
+
+              const handleRemoveSignBtn = (e) => {
+                const removeBtn = e.target;
+                const removeSignBtn = document.getElementById('signatureRoutingRemoveBtn');
+                console.log('removeBtn ' + removeBtn)
+                const signRoutingForm = document.getElementById('signatureRoutingForm');
+                const  lastChildOfForm = signRoutingForm.children[signRoutingForm.children.length - 1];
+                const num = parseInt(lastChildOfForm.getAttribute('id').slice(-1));
+
+                console.log('handleRemoveSignBtn num ', num)
+
+                removeSignBtn.disabled = num <= 2;
+
+                lastChildOfForm.remove();
+              }
+
+              const handleAddSignBtnClick = (e) => {
+                const signRoutingForm = document.getElementById('signatureRoutingForm');
+                const  lastChildOfForm = signRoutingForm.children[signRoutingForm.children.length - 1];
+                const removeSignBtn = document.getElementById('signatureRoutingRemoveBtn');
+                const num = parseInt(lastChildOfForm.getAttribute('id').slice(-1)) + 1;
+                console.log('handleAddSignBtnClick')
+                signRoutingForm.innerHTML += `<div class="input-group mt-3" id="signatureRoutingInputContainer-${num}">
+                      <input type="email"
+                             class="form-control"
+                             placeholder="Email of another person to sign"
+                             aria-label="Email of another person to sign with buttons to add more or remove existing"
+                             aria-describedby="signatureRoutingInput-${num}"
+                             required>
+                      </div>
+                  </div>`;
+
+                removeSignBtn.disabled = false;
+              }
+
+              addSignBtn.addEventListener('click', handleAddSignBtnClick);
+              removeSignBtn.addEventListener('click', handleRemoveSignBtn);
+            </script>
+
+            <script>
+
             </script>
 
             <script>
