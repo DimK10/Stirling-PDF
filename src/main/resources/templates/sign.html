@@ -25,6 +25,12 @@
 </head>
 
 <body>
+  <div id="overlay" class="overlay" style="display: none">
+    <div class="d-flex justify-content-center align-items-center h-100">
+      <div class="spinner-border text-primary" role="status" style="z-index: 20;">
+      </div>
+    </div>
+  </div>
   <div id="page-container">
     <div id="content-wrap">
       <th:block th:insert="~{fragments/navbar.html :: navbar}"></th:block>
@@ -415,39 +421,69 @@
                 <label class="form-check-label" for="signatureRoutingCheck">Do you want to add more people to sign?</label>
               </div>
 
-              <div id="signatureRoutingForm" class="form-group mt-3 mb-3" style="display: none">
+              <form id="signatureRoutingForm">
+                <div id="signatureRoutingFormContainer" class="form-group mt-3 mb-3" style="display: none">
                   <div class="input-group" id="signatureRoutingInputContainer-1">
-                      <input type="email"
-                             id="signatureRoutingInput-1"
-                             class="form-control"
-                             placeholder="Email of another person to sign"
-                             aria-label="Email of another person to sign with buttons to add more or remove existing"
-                             aria-describedby="signatureRoutingInput-1">
+                    <input type="email"
+                           id="signatureRoutingInput-1"
+                           class="form-control"
+                           placeholder="Email of another person to sign"
+                           aria-label="Email of another person to sign with buttons to add more or remove existing"
+                           aria-describedby="signatureRoutingInput-1">
                   </div>
-              </div>
-              <div class="d-flex flex-row justify-content-center">
-                <button
-                        id="signatureRoutingAddBtn"
-                        class="btn btn-success"
-                        type="button"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add another email"
-                        style="display: none"
-                >Add another Email</button>
-                <button
-                      id="signatureRoutingRemoveBtn"
-                      class="btn btn-danger"
-                      type="button"
-                      data-toggle="tooltip"
-                      data-placement="top"
-                      title="Remove this email"
-                      style="display: none"
-                      disabled
-          >Remove last Email</button>
-              </div>
+                </div>
+                <div class="d-flex flex-row justify-content-center">
+                  <button
+                          id="signatureRoutingAddBtn"
+                          class="btn btn-success"
+                          type="button"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Add another email"
+                          style="display: none"
+                  >Add another Email</button>
+                  <button
+                          id="signatureRoutingRemoveBtn"
+                          class="btn btn-danger"
+                          type="button"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Remove this email"
+                          style="display: none"
+                          disabled
+                  >Remove last Email</button>
+                </div>
+
+                <!-- send emails to sign button -->
+                <div class="margin-auto-parent" style="display: none">
+                  <button id="sendEmails" class="btn btn-primary mb-2 margin-center"
+                          type="submit"
+                          th:text="#{handleSignRouting}"></button>
+                </div>
+              </form>
+
 
             </div>
+
+            <script>
+              const emailForm = document.getElementById('signatureRoutingForm');
+              emailForm.addEventListener('submit', async (e) => {
+                // prevent default behavior
+                e.preventDefault();
+                let formData = new FormData(emailForm);
+                console.log(Object.fromEntries(formData));
+
+
+                // test overlay
+                let loading = true;
+                const overlay = document.getElementById('overlay');
+                overlay.style.display = loading ? 'block' : 'none';
+                // todo
+                const response = await fetch('http://')
+
+              })
+            </script>
+
 
             <!-- download button -->
             <div class="margin-auto-parent">
@@ -469,15 +505,18 @@
             <script>
               document.getElementById('signatureRoutingCheck').addEventListener('change', (e) => {
                 const checked = e.target.checked;
-                const signatureRoutingForm = document.getElementById('signatureRoutingForm');
+                const signatureRoutingFormContainer = document.getElementById('signatureRoutingFormContainer');
                 const addSignatureBtn = document.getElementById('signatureRoutingAddBtn');
                 const removeSignatureBtn = document.getElementById('signatureRoutingRemoveBtn');
-                signatureRoutingForm.style.display = checked ? 'block' : 'none';
+                const sendEmailsBtn = document.getElementById('sendEmails');
+
+                signatureRoutingFormContainer.style.display = checked ? 'block' : 'none';
                 addSignatureBtn.style.display = checked ? 'block' : 'none';
                 removeSignatureBtn.style.display = checked ? 'block' : 'none';
+                sendEmailsBtn.style.display = checked ? 'block' : 'none';
 
                 if (!checked) {
-                  signatureRoutingForm.innerHTML = '<div class="input-group" id="signatureRoutingInputContainer-1">' +
+                  signatureRoutingFormContainer.innerHTML = '<div class="input-group" id="signatureRoutingInputContainer-1">' +
                           '                      <input type="email"' +
                           '                             id="signatureRoutingInput-1"' +
                           '                             class="form-control"' +
@@ -503,12 +542,9 @@
               const handleRemoveSignBtn = (e) => {
                 const removeBtn = e.target;
                 const removeSignBtn = document.getElementById('signatureRoutingRemoveBtn');
-                console.log('removeBtn ' + removeBtn)
-                const signRoutingForm = document.getElementById('signatureRoutingForm');
-                const  lastChildOfForm = signRoutingForm.children[signRoutingForm.children.length - 1];
+                const signatureRoutingFormContainer = document.getElementById('signatureRoutingFormContainer');
+                const  lastChildOfForm = signatureRoutingFormContainer.children[signatureRoutingFormContainer.children.length - 1];
                 const num = parseInt(lastChildOfForm.getAttribute('id').slice(-1));
-
-                console.log('handleRemoveSignBtn num ', num)
 
                 removeSignBtn.disabled = num <= 2;
 
@@ -516,12 +552,13 @@
               }
 
               const handleAddSignBtnClick = (e) => {
-                const signRoutingForm = document.getElementById('signatureRoutingForm');
-                const  lastChildOfForm = signRoutingForm.children[signRoutingForm.children.length - 1];
+
+                const signatureRoutingFormContainer = document.getElementById('signatureRoutingFormContainer');
+                const  lastChildOfForm = signatureRoutingFormContainer.children[signatureRoutingFormContainer.children.length - 1];
                 const removeSignBtn = document.getElementById('signatureRoutingRemoveBtn');
                 const num = parseInt(lastChildOfForm.getAttribute('id').slice(-1)) + 1;
-                console.log('handleAddSignBtnClick')
-                signRoutingForm.innerHTML += `<div class="input-group mt-3" id="signatureRoutingInputContainer-${num}">
+
+                signatureRoutingFormContainer.innerHTML += `<div class="input-group mt-3" id="signatureRoutingInputContainer-${num}">
                       <input type="email"
                              class="form-control"
                              placeholder="Email of another person to sign"
