@@ -1,15 +1,20 @@
 package stirling.software.SPDF.model.api.general;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
+import java.util.Set;
 
 @Data
 @EqualsAndHashCode
 public class SignRoutingRequest {
 
-    private List<String> emails;
+    @NotEmpty
+    private Set<String> emails;
 
-    private byte[] pdfFile;
+    @NotNull
+    private MultipartFile pdfFile;
 }

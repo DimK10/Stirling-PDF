@@ -2,13 +2,11 @@ package stirling.software.SPDF.controller.api;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import stirling.software.SPDF.model.api.general.SignRoutingRequest;
 
 @RestController
@@ -20,10 +18,10 @@ public class SignRoutingController {
 
     @PostMapping(value = "/scale-pages", consumes = "multipart/form-data")
     @Operation(
-            summary = "Change the size of a PDF page/document",
+            summary = "Save pdf file locally for sign routing",
             description =
-                    "This operation takes an input PDF file and the size to scale the pages to in the output PDF file. Input:PDF Output:PDF Type:SISO")
-    public ResponseEntity handleSignRounting(@ModelAttribute SignRoutingRequest signRoutingRequest) {
+                    "This operation takes an input PDF file and the emails of the users that need to sign it. It stores the file for signing from those users")
+    public ResponseEntity handleSignRounting(@Valid @RequestBody SignRoutingRequest signRoutingRequest) {
         // todo
         return ResponseEntity.ok().build();
     }
