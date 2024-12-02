@@ -1,8 +1,7 @@
 package stirling.software.SPDF.config;
 
-import freemarker.cache.ClassTemplateLoader;
-import freemarker.cache.TemplateLoader;
-import freemarker.template.Configuration;
+import java.util.Properties;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -15,9 +14,11 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
-import java.util.Properties;
+import freemarker.cache.ClassTemplateLoader;
+import freemarker.cache.TemplateLoader;
+import freemarker.template.Configuration;
 
-//@ComponentScan(basePackages = { "stirling.software.SPDF" })
+// @ComponentScan(basePackages = { "stirling.software.SPDF" })
 @org.springframework.context.annotation.Configuration
 @ConditionalOnProperty(value = "spring.mail.functionality.enabled", havingValue = "true")
 public class EmailConfig {
@@ -87,35 +88,36 @@ public class EmailConfig {
         return templateResolver;
     }
 
-//    @Bean
-//    public ITemplateResolver thymeleafFilesystemTemplateResolver() {
-//        FileTemplateResolver templateResolver = new FileTemplateResolver();
-//        templateResolver.setPrefix(mailTemplatesPath + "/");
-//        templateResolver.setSuffix(".html");
-//        templateResolver.setTemplateMode("HTML");
-//        templateResolver.setCharacterEncoding("UTF-8");
-//        return templateResolver;
-//    }
+    //    @Bean
+    //    public ITemplateResolver thymeleafFilesystemTemplateResolver() {
+    //        FileTemplateResolver templateResolver = new FileTemplateResolver();
+    //        templateResolver.setPrefix(mailTemplatesPath + "/");
+    //        templateResolver.setSuffix(".html");
+    //        templateResolver.setTemplateMode("HTML");
+    //        templateResolver.setCharacterEncoding("UTF-8");
+    //        return templateResolver;
+    //    }
 
     @Bean
     public FreeMarkerConfigurer freemarkerClassLoaderConfig() {
         Configuration configuration = new Configuration(Configuration.VERSION_2_3_27);
-        TemplateLoader templateLoader = new ClassTemplateLoader(this.getClass(), "/" + mailTemplatesPath);
+        TemplateLoader templateLoader =
+                new ClassTemplateLoader(this.getClass(), "/" + mailTemplatesPath);
         configuration.setTemplateLoader(templateLoader);
         FreeMarkerConfigurer freeMarkerConfigurer = new FreeMarkerConfigurer();
         freeMarkerConfigurer.setConfiguration(configuration);
         return freeMarkerConfigurer;
     }
 
-//    @Bean
-//    public FreeMarkerConfigurer freemarkerFilesystemConfig() throws IOException {
-//        Configuration configuration = new Configuration(Configuration.VERSION_2_3_27);
-//        TemplateLoader templateLoader = new FileTemplateLoader(new File(mailTemplatesPath));
-//        configuration.setTemplateLoader(templateLoader);
-//        FreeMarkerConfigurer freeMarkerConfigurer = new FreeMarkerConfigurer();
-//        freeMarkerConfigurer.setConfiguration(configuration);
-//        return freeMarkerConfigurer;
-//    }
+    //    @Bean
+    //    public FreeMarkerConfigurer freemarkerFilesystemConfig() throws IOException {
+    //        Configuration configuration = new Configuration(Configuration.VERSION_2_3_27);
+    //        TemplateLoader templateLoader = new FileTemplateLoader(new File(mailTemplatesPath));
+    //        configuration.setTemplateLoader(templateLoader);
+    //        FreeMarkerConfigurer freeMarkerConfigurer = new FreeMarkerConfigurer();
+    //        freeMarkerConfigurer.setConfiguration(configuration);
+    //        return freeMarkerConfigurer;
+    //    }
 
     @Bean
     public ResourceBundleMessageSource emailMessageSource() {
@@ -123,5 +125,4 @@ public class EmailConfig {
         messageSource.setBasename("mailMessages");
         return messageSource;
     }
-
 }

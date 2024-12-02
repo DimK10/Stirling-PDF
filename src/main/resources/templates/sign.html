@@ -421,7 +421,7 @@
                 <label class="form-check-label" for="signatureRoutingCheck">Do you want to add more people to sign?</label>
               </div>
 
-              <form id="signatureRoutingForm">
+              <form id="signatureRoutingForm" th:action="@{'/api/v1/general/sign-routing'}" method="post" enctype="multipart/form-data">
                 <div id="signatureRoutingFormContainer" class="form-group mt-3 mb-3" style="display: none">
                   <div class="input-group" id="signatureRoutingInputContainer-1">
                     <input type="email"
@@ -470,16 +470,32 @@
               emailForm.addEventListener('submit', async (e) => {
                 // prevent default behavior
                 e.preventDefault();
-                let formData = new FormData(emailForm);
-                console.log(Object.fromEntries(formData));
+                // let formData = new FormData(emailForm);
+                // console.log(Object.fromEntries(formData));
+
+                const formData = new FormData(e.target);
+
+                // get url from form action attribute
+                const url = emailForm.getAttribute("action");
 
 
                 // test overlay
                 let loading = true;
                 const overlay = document.getElementById('overlay');
                 overlay.style.display = loading ? 'block' : 'none';
-                // todo
-                const response = await fetch('http://')
+
+
+                const response = await fetch(url, {
+                  method: 'POST',
+                  body: formData
+              });
+
+                if (response.status === 200) {
+                  const data = await response.json();
+                  window.location.href = data.url;
+                }
+
+                // todo - handle error
 
               })
             </script>

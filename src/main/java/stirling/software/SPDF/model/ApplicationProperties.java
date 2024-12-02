@@ -282,6 +282,47 @@ public class ApplicationProperties {
     }
 
     @Data
+    public static class Email {
+        private Functionality functionality;
+        private String host;
+        private Integer port;
+        private String username;
+        private String password;
+        private Properties properties;
+    }
+
+    @Data
+    public static class Functionality {
+        private boolean enabled;
+    }
+
+    @Data
+    public static class Mail {
+        private SMTP smtp;
+        private Transport transport;
+    }
+
+    @Data
+    public static class Transport {
+        private String protocol;
+    }
+
+    @Data
+    public static class SMTP {
+        private boolean auth;
+    }
+
+    @Data
+    public static class StartTls {
+        private boolean enable;
+    }
+
+    @Data
+    public static class Properties {
+        private Mail mail;
+    }
+
+    @Data
     public static class AutomaticallyGenerated {
         @ToString.Exclude private String key;
         private String UUID;
